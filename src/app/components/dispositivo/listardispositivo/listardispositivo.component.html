@@ -1,0 +1,76 @@
+<div class="container">
+<div style="display: flex; justify-content: flex-end;">
+  <button mat-raised-button color="primary" routerLink="/dispositivos/nuevo">
+    Nuevo Dispositivo
+  </button>
+</div>
+
+<!--cant de registros mostrar-->
+<div class="cantidad">
+  <mat-icon>format_list_numbered</mat-icon>
+  Cantidad de registros en la lista: {{cantidadRegistros}}
+</div>
+
+<div><h1>Listar Dispositivos</h1></div>
+
+<div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="c1">
+    <th mat-header-cell *matHeaderCellDef> Número de ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_dispositivo}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="c2">
+    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+    <td mat-cell *matCellDef="let element"> {{element.tipo_dispositivo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="c3">
+    <th mat-header-cell *matHeaderCellDef> Ubicación </th>
+    <td mat-cell *matCellDef="let element"> {{element.ubicacion_dispositivo}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="c4">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let element"> {{element.estado_dispositivo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="c5">
+    <th mat-header-cell *matHeaderCellDef> Inmueble Asociado </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_inmueble.nombre_inmueble}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="c6">
+    <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+    <td mat-cell *matCellDef="let element"> 
+       <button matButton [routerLink]="['ediciones',element.id_dispositivo]">
+        Actualizar <mat-icon>edit</mat-icon>
+       </button>  
+    
+    </td>
+  </ng-container>
+  
+    <ng-container matColumnDef="c7">
+    <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+    <td mat-cell *matCellDef="let element"> 
+       <button matButton (click)="eliminar(element.id_dispositivo)">
+        Eliminar<mat-icon>delete</mat-icon>
+       </button>  
+    
+    </td>
+  </ng-container>
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+ <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of anuncios">
+ </mat-paginator>
+
+</div>
+</div>
+

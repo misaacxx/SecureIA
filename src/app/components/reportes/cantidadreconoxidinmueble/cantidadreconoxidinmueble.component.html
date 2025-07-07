@@ -1,0 +1,35 @@
+<div class="title-container">
+  <div style="text-align: center" class="title">
+   <h1 >Cantidad de Reconocimientos por Id Inmueble </h1>
+  </div>
+
+  <br>
+
+  <!--busqueda por idInmueble -> Cantidad de eventos-->
+<div class="busqueda"><h1>Reporte según el ID inmueble Ingresado</h1></div>
+  <div>
+        <form [formGroup]="form">
+            <mat-form-field>
+                <mat-label>Ingresa ID Inmueble : </mat-label>
+                <input matInput formControlName="IngresoTecla">
+            </mat-form-field>   
+        </form>
+        <div *ngIf="notResults" class="no-result">
+          <mat-icon>warning</mat-icon>
+          <p>No se encontraron resultados</p>
+        </div>  
+  </div>
+
+  <br>
+  <div  style="text-align: center" class="chart-container">
+        <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+        >            
+        </canvas>
+    </div>
+</div>

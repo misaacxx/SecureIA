@@ -1,0 +1,81 @@
+<!--boton de retorno-->
+<div  style="position: absolute; top: 180px; right: 700px;flex-wrap: wrap;">
+<button mat-raised-button color="primary" routerLink="/geolocalizaciones">
+<mat-icon>arrow_back</mat-icon> Regresar</button>
+</div>
+
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Geolocalización</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Geolocalización</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID de Geolocalización</mat-label>
+                <input matInput formControlName="CodGeo" [readonly]="true">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label>Latitud</mat-label>
+                <input matInput formControlName="Lat">
+                <mat-error *ngIf="form.get('Lat')?.hasError('required')">
+                La latitud es obligatoria!!
+                </mat-error>
+                <mat-error *ngIf="form.get('Lat')?.hasError('pattern')">Debe ser un número válido (puede tener decimales)</mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label> Longitud</mat-label>
+                <input matInput formControlName="Lon">
+                <mat-error *ngIf="form.get('Lon')?.hasError('required')">
+                La longitud es obligatoria!!
+                </mat-error>
+                <mat-error *ngIf="form.get('Lat')?.hasError('pattern')">Debe ser un número válido (puede tener decimales)</mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label>Dirección</mat-label>
+                <input matInput formControlName="Direcc">
+                <mat-error *ngIf="form.get('Direcc')?.hasError('required')">
+                La dirección es obligatoria!!
+                </mat-error>
+                <mat-error *ngIf="form.get('Direcc')?.hasError('maxlength')">Máximo 30 caracteres</mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label> Referencia</mat-label>
+                <input matInput formControlName="Refer">
+                <mat-error *ngIf="form.get('Refer')?.hasError('required')">
+                La referencia es obligatoria!!
+                </mat-error>
+                <mat-error *ngIf="form.get('Refer')?.hasError('maxlength')">Máximo 50 caracteres</mat-error>
+            </mat-form-field>
+
+
+            <br>
+            <mat-form-field>
+            <mat-label>INMUEBLE Asignado</mat-label>
+            <mat-select formControlName="idInmuebleGEO">
+                @for (food of listadeInmuebles; track food) {
+                <mat-option [value]="food.id_inmueble">{{food.nombre_inmueble}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idInmuebleGEO')?.hasError('required')">
+                Asignar el INMUEBLE porfavor!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="!edicion">Registrar</button>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="edicion">Actualizar</button>            
+
+        </form>
+    </div>
+
+</div>

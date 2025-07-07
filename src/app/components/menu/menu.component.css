@@ -1,0 +1,62 @@
+.custom-toolbar {
+   background-color: rgb(255, 49, 49);
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  height: auto !important; /* 👈 esto permite que crezca con contenido */
+  min-height: auto;
+}
+
+.btn-rojo {
+ background-color: #2d4cbd;
+ border-radius: 4px;
+ margin: 4px;
+ border: none;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900; /*en negrita*/
+  color:  white;
+
+
+}
+
+.btn-rojo mat-icon {
+ color: white;
+}
+
+.custom-toolbar div{
+     color: white;
+
+}
+.custom-toolbar button,
+
+.custom-toolbar mat-icon {
+
+ color: white;
+
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.logo-link img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 18;
+  font-weight: bold;
+  color: white;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+

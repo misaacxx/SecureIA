@@ -1,0 +1,41 @@
+<div class="title-container">
+  <div style="text-align: center" class="title">
+   <h1 >Contar Grabaciones por Fecha Ingresada</h1>
+  </div>
+
+  <br>
+
+  <!--busqueda por Fecha-->
+    <div class="busqueda"  style="text-align: center"><h1>Reporte por Fecha Ingresada</h1></div>
+    <div>
+        <form [formGroup]="form">
+            <mat-form-field>
+            <mat-label>Selecciona la fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="IngresoTecla" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </form>  
+
+    </div>
+        <div *ngIf="notResults" class="no-result">
+          <mat-icon>warning</mat-icon>
+          <p>No se encontraron resultados</p>
+        </div>         
+  <br>
+  <div style="text-align: center" class="chart-container">
+        <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+        >            
+        </canvas>
+    </div>
+</div>

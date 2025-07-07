@@ -1,0 +1,117 @@
+#plans {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom right, #f1f8ff, #eaf1ff);
+  text-align: center;
+}
+
+#plans h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: #2d4cbd;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#plans .description {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.05rem;
+  color: #455a64;
+  line-height: 1.7;
+}
+
+.plans {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.plan {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px 25px;
+  width: 300px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.plan:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border-color: #2d4cbd;
+}
+
+.plan h3 {
+  font-size: 1.8rem;
+  color:#2d4cbd;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.plan ul {
+  padding: 0;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.plan ul li {
+  color: #37474f;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.plan-btn {
+  background: #e53935;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.plan-btn:hover {
+  background: #c62828;
+}
+
+.featured {
+  border: 2px solid#2d4cbd;
+  background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(11, 30, 100, 0.2);
+  z-index: 2;
+}
+
+.featured-btn {
+  background: #2d4cbd;
+}
+
+.featured-btn:hover {
+  background: #2d4cbd;
+}
+
+/* Badges */
+.badge,
+.badge-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background:#2d4cbd;
+  color: white;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.badge-popular {
+  background: #ff9800;
+}

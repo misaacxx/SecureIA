@@ -1,0 +1,81 @@
+    <!--boton de retorno-->
+    <div  style="position: absolute; top: 180px; right: 700px;flex-wrap: wrap;">
+    <button mat-raised-button color="primary" routerLink="/grabaciones">
+    <mat-icon>arrow_back</mat-icon> Regresar</button>
+    </div> 
+
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Grabaciones</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Grabaciones</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID Grabación</mat-label>
+                <input matInput formControlName="CodGRAB" [readonly]="true">
+            </mat-form-field>
+
+           <br>
+            <mat-form-field >
+                <mat-label>URL de Grabación </mat-label>
+                <input matInput formControlName="urlGRAB">
+                <mat-error *ngIf="form.get('urlGRAB')?.hasError('required')">
+                Añadir la URL de la Grabación!!
+                </mat-error>
+                <mat-error *ngIf="form.get('urlGRAB')?.hasError('maxlength')">
+                Máximo 100 caracteres permitidos
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+            <mat-form-field appearance="fill">
+            <mat-label>Hora de inicio</mat-label>
+            <input matInput [matTimepicker]="picker" formControlName="horaini">
+            <mat-timepicker-toggle matIconSuffix [for]="picker" />
+            <mat-timepicker #picker></mat-timepicker>
+            <mat-error *ngIf="form.get('horaini')?.hasError('required')">
+                La hora de inicio es obligatoria
+            </mat-error>
+            <mat-error *ngIf="form.get('horaini')?.hasError('matTimepickerParse')">
+            Formato de hora inválido (usa el selector)
+            </mat-error>
+            </mat-form-field>
+
+           <br>
+            <mat-form-field >
+                <mat-label>Duración de la Grabación(Seg) </mat-label>
+                <input matInput formControlName="duraSeg">
+                <mat-error *ngIf="form.get('duraSeg')?.hasError('required')">
+                Añadir la Duración de la Grabación!!
+                </mat-error>
+                <mat-error *ngIf="form.get('duraSeg')?.hasError('min')">
+                Debe ser mayor a 0 segundos
+                </mat-error>
+                <mat-error *ngIf="form.get('duraSeg')?.hasError('pattern')">
+                Solo se permiten números enteros
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+            <mat-label>Reconocimiento Asociado</mat-label>
+            <mat-select formControlName="idgrabRECO">
+                @for (food of listadeReconocimientos; track food) {
+                <mat-option [value]="food.id_reconocimiento">{{food.id_reconocimiento}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idgrabRECO')?.hasError('required')">
+                Asignar el RECONOCIMIENTO Asociado porfavor!!
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="!edicion">Registrar</button>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="edicion">Actualizar</button>
+        </form>
+    </div>
+
+</div>
+

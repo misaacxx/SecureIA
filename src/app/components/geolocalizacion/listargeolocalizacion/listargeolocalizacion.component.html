@@ -1,0 +1,99 @@
+<div class="container">
+<div style="display: flex; justify-content: flex-end;">
+  <button mat-raised-button color="primary" routerLink="/geolocalizaciones/nuevo">
+    Nueva Geolocalización
+  </button>
+</div>
+
+<!--busqueda por el id de Inmueble relacionado-->
+<div class="busqueda"><h1>Búsqueda por Id Inmueble Relacionado</h1></div>
+  <div>
+        <form [formGroup]="form">
+            <mat-form-field>
+                <mat-label>Id Inmueble: </mat-label>
+                <input matInput formControlName="idInmueble">  
+                <!--VALIDACIÓN1-->
+                <mat-error *ngIf="form.get('idInmueble')?.hasError('pattern')">
+                El id del Inmueble debe ser un número!!
+                </mat-error>
+            </mat-form-field>   
+        </form>
+
+        <!--VALIDACIÓN2-->
+        <div *ngIf="notResults1" style="text-align:left; color: red;">
+        <p>No se encontraron resultados</p>
+
+  </div>  
+</div>
+
+<!--busqueda por el id de la ZONA relacionada-->
+<div class="busqueda"><h1>Búsqueda por Id Zona Relacionada</h1></div>
+  <div>
+        <form [formGroup]="form2">
+            <mat-form-field>
+                <mat-label>Id ZONA</mat-label>
+                <input matInput formControlName="idZona">  
+                <!--VALIDACIÓN1-->
+                <mat-error *ngIf="form2.get('idZona')?.hasError('pattern')">
+                El id de la Zona debe ser un número!!
+                </mat-error>
+            </mat-form-field>   
+        </form>
+
+        <!--VALIDACIÓN2-->
+        <div *ngIf="notResults2" style="text-align:left; color: white;">
+        <p>No se encontraron resultados</p>
+
+  </div>  
+</div>
+
+<div><h1>Listar Geolocalizaciones</h1></div>
+
+<div>
+<div class="cards-container">
+  <mat-card *ngFor="let element of pagedData" class="geo-card">
+    <mat-card-header>
+      <mat-card-title>ID: {{element.id_geo}} - {{element.direccion_geo}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <iframe
+        width="100%"
+        height="250"
+        [src]="getMapaUrl(element.latitud, element.longitud)"
+        frameborder="0"
+        style="border:0;"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+
+      <p><strong>Referencia:</strong> {{ element.referencia_geo }}</p>
+      <p><strong>Inmueble:</strong> {{ element.id_inmueble.nombre_inmueble }}</p>
+    </mat-card-content>
+
+    <mat-card-actions style="display: flex; justify-content: space-between;" *ngIf="verificar()">
+      <button matbutton color="primary" [routerLink]="['ediciones', element.id_geo]"
+        [disabled]="!isAdmin()"
+        [matTooltip]="isAdmin() ? '' : 'No tiene permisos para actualizar'">
+        <mat-icon>edit</mat-icon>
+      </button>
+      
+      <button matbutton *ngIf="verificar()" color="warn" (click)="eliminar(element.id_geo)"
+        [disabled]="!isAdmin()"
+        [matTooltip]="isAdmin() ? '' : 'No tiene permisos para actualizar'">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<br>
+<mat-paginator
+  [length]="totalLength"
+  [pageSize]="4"
+  [pageSizeOptions]="[4, 6, 8, 15]"
+  showFirstLastButtons>
+</mat-paginator>
+
+</div>
+</div>
+

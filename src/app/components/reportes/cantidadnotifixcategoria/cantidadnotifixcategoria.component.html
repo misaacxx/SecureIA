@@ -1,0 +1,47 @@
+<div class="title-container">
+  <div style="text-align: center" class="title">
+   <h1 >Cantidad de Notificaciones según la Categoría Ingresada </h1>
+  </div>
+
+  <br>
+
+  <!--busqueda por Notificaciones segun Categoria-->
+<div class="busqueda"><h1>Reporte Notificaciones por Categoría</h1></div>
+
+  <!--div>
+        <form [formGroup]="form">
+            <mat-form-field>
+                <mat-label>Ingresa Nombre de la Categoría : </mat-label>
+                <input matInput formControlName="IngresoTecla">
+            </mat-form-field>   
+        </form>
+        <div *ngIf="notResults" style="text-align:left; color: red;">
+        <p>No se encontraron resultados</p>
+        </div>  
+  </!--div--->
+
+  <br>
+    <form [formGroup]="form">
+      <mat-form-field>
+      <mat-label> Seleccionar Nombre de la Categoría : </mat-label>
+      <mat-select formControlName="IngresoTecla">
+          @for (food of listadeNotificaciones; track food) {
+          <mat-option [value]="food.categoria_notificacion">{{food.categoria_notificacion}}</mat-option>
+          }
+      </mat-select>
+      </mat-form-field>
+    </form>
+
+    <br>
+    <div style="text-align: center" class="chart-container">
+          <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [type]="barChartType"
+          >            
+          </canvas>
+      </div>
+</div>

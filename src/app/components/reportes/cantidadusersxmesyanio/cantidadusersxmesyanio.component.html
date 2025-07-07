@@ -1,0 +1,40 @@
+<div class="title-container">
+  <div style="text-align: center" class="title">
+   <h1 >Cantidad de Usuarios por Mes y Año </h1>
+  </div>
+
+  <br>
+
+  <!--busqueda por mes y año -> Cantidad de usuarios-->
+<div class="busqueda"><h1>Reporte por Mes y Año Ingresado</h1></div>
+  <div>
+        <form [formGroup]="form">
+            <mat-form-field>
+                <mat-label>Ingresa Mes : </mat-label>
+                <input matInput formControlName="IngresoTecla2">
+            </mat-form-field>   
+            <br>  <br>  <br>
+            <mat-form-field>
+                <mat-label>Ingresa Año : </mat-label>
+                <input matInput formControlName="IngresoTecla">
+            </mat-form-field>   
+        </form>
+        <div *ngIf="notResults" class="no-result">
+        <mat-icon>warning</mat-icon>
+        <p>No se encontraron resultados</p>
+        </div>              
+  </div>
+
+  <br>
+  <div style="text-align: center" class="chart-container">
+        <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+        >            
+        </canvas>
+    </div>
+</div>

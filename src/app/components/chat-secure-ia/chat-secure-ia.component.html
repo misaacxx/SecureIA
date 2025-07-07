@@ -1,0 +1,35 @@
+<div class="chat-container">
+<div style="display: flex; align-items: center; gap: 16px;">
+  <lottie-player
+    src="assets/robot.json"
+    background="transparent"
+    speed="1"
+    style="width: 150px; height: 150px;"
+    loop
+    autoplay
+  ></lottie-player>
+  <h1 class="tit" style="align-items: center;">Chat SecureIA</h1>
+</div>
+
+<br>
+  <div class="chat-window">
+    <div class="message bot">{{ mensajeInicial }}</div>
+    <div *ngFor="let msg of mensajes">
+      <div class="message" [ngClass]="msg.rol">{{ msg.texto }}</div>
+    </div>
+  </div>
+
+<div class="sugerencias">
+  <span *ngFor="let sugerencia of sugerencias">
+    <button (click)="enviarSugerencia(sugerencia)" class="boton-sugerencia">
+      {{ sugerencia }}
+    </button>
+  </span>
+</div>  
+
+
+  <div class="input-container">
+    <input [(ngModel)]="entradaUsuario" placeholder="Escribe tu mensaje..." />
+    <button (click)="enviarMensaje()">Enviar</button>
+  </div>
+</div>

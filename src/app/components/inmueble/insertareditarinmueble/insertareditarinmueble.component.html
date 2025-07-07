@@ -1,0 +1,86 @@
+    <!--boton de retorno-->
+    <div  style="position: absolute; top: 180px; right: 700px;flex-wrap: wrap;">
+    <button mat-raised-button color="primary" routerLink="/inmuebles">
+    <mat-icon>arrow_back</mat-icon> Regresar</button>
+    </div> 
+
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Inmueble</h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Inmueble</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID de Inmueble</mat-label>
+                <input matInput formControlName="CodigoInmu" [readonly]="true">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label>Nombre de Inmueble</mat-label>
+                <input matInput formControlName="nombreInmu">
+                <mat-error *ngIf="form.get('nombreInmu')?.hasError('required')">
+                El nombre del inmueble es obligatorio!!
+                </mat-error>
+                <mat-error *ngIf="form.get('nombreInmu')?.hasError('maxlength')">
+                Máximo 20 caracteres permitidos
+                </mat-error>
+                <mat-error *ngIf="form.get('nombreInmu')?.hasError('pattern')">
+                Solo se permiten letras, números y espacios. No puede estar compuesto solo por números
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label> Dirección </mat-label>
+                <input matInput formControlName="DireccInmu">
+                <mat-error *ngIf="form.get('DireccInmu')?.hasError('required')">
+                La direccion es obligatoria!!
+                </mat-error>
+                <mat-error *ngIf="form.get('DireccInmu')?.hasError('maxlength')">
+                Máximo 30 caracteres permitidos
+                </mat-error>
+                <mat-error *ngIf="form.get('DireccInmu')?.hasError('pattern')">
+                Solo se permiten letras, números y espacios. No puede estar compuesto solo por números
+                </mat-error>
+            </mat-form-field>
+
+            
+            <br>
+
+            <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo_inmu">
+                @for (food of tiposdeInmuebles; track food) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('tipo_inmu')?.hasError('required')">
+                El Tipo de Inmueble es obligatorio!!
+            </mat-error>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field>
+            <mat-label>USUARIO Asignado</mat-label>
+            <mat-select formControlName="idUserINMU">
+                @for (food of listadeUsuarios; track food) {
+                <mat-option [value]="food.id_usuario">{{food.dni_usuario}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idUserINMU')?.hasError('required')">
+                Asignar el USUARIO porfavor!!
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="!edicion">Registrar</button>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="edicion">Actualizar</button>
+
+        </form>
+    </div>
+
+</div>

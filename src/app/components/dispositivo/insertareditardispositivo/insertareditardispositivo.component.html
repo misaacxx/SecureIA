@@ -1,0 +1,82 @@
+
+<!--boton de retorno-->
+<div  style="position: absolute; top: 180px; right: 700px;flex-wrap: wrap;">
+<button mat-raised-button color="primary" routerLink="/dispositivos">
+<mat-icon>arrow_back</mat-icon> Regresar</button>
+</div> 
+
+<div class="container">
+    <div style="text-align: center; margin:5%"*ngIf="!edicion"><h1>Registro de Dispositivo </h1></div>
+    <div  style="text-align: center;margin:5%" *ngIf="edicion"><h1>Actualizar Dispositivo</h1></div>
+
+    <div style="text-align: center; margin:5%" class="form-box">
+        <form [formGroup]="form" (submit)="aceptar()">
+
+            <br>
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID Dispositivo </mat-label>
+                <input matInput formControlName="CodDispo" [readonly]="true">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+            <mat-label> Tipo Dispositivo</mat-label>
+            <mat-select formControlName="Tipodis">
+                @for (food of listadeDispos; track food) {
+                <mat-option [value]="food.tipo_dispositivo">{{food.tipo_dispositivo}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('Tipodis')?.hasError('required')">
+                Asignar el Tipo de Dispositivo porfavor!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field >
+                <mat-label> Ubicacion</mat-label>
+                <input matInput formControlName="Ubica">
+                <mat-error *ngIf="form.get('Ubica')?.hasError('required')">
+                Ingrese la ubicación!!
+                </mat-error>
+                <mat-error *ngIf="form.get('Ubica')?.hasError('maxlength')">
+                Máximo 20 caracteres permitidos.
+                </mat-error>
+            </mat-form-field>
+        
+            <br>
+            <br>
+            <mat-label>Estado.</mat-label>
+            <br>
+            <mat-radio-group formControlName="Estado">
+            <mat-radio-button value="Activo">
+                <mat-icon color="primary">check_circle</mat-icon> Activo
+            </mat-radio-button>
+            <mat-radio-button value="Inactivo">
+                <mat-icon color="warn">cancel</mat-icon> Inactivo
+            </mat-radio-button>
+            <mat-radio-button value="En Mantenimiento">
+                <mat-icon color="accent">build</mat-icon> En Mantenimiento
+            </mat-radio-button>
+            </mat-radio-group>
+
+
+            <br>
+            <mat-form-field>
+            <mat-label>INMUEBLE Asignado</mat-label>
+            <mat-select formControlName="idInmuebleDISPO">
+                @for (food of listadeInmuebles; track food) {
+                <mat-option [value]="food.id_inmueble">{{food.nombre_inmueble}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('idInmuebleDISPO')?.hasError('required')">
+                Asignar el INMUEBLE porfavor!!
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="!edicion">Registrar</button>
+            <button matButton="filled" [disabled]="form.invalid" *ngIf="edicion">Actualizar</button>
+        </form>
+    </div>
+
+</div>

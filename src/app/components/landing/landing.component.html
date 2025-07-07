@@ -1,0 +1,76 @@
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-image">
+      <img src="https://i.postimg.cc/kg8SzztK/logo-secureia-azul.jpg" alt="Logo SecureIA" class="hero-logo" />
+    </div>
+    <div class="hero-text">
+      <h1>SecureIA</h1>
+      <p>La plataforma más avanzada de seguridad con inteligencia artificial.</p>
+      <a href="#about" class="cta-button">Conócenos</a>
+      <br>
+      <div class="cta-button-group">
+      <a *ngIf="!verificar()" [routerLink]="'/iniciarsesion'" class="cta-button">Iniciar Sesión</a>
+      <a *ngIf="isAdmin()" [routerLink]="'/usuarios/nuevo'" class="cta-button">Registrar Nuevo Usuario</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="about" class="section">
+  <h2>¿Qué es SecureIA?</h2>
+  <p>SecureIA es una solución integral que combina inteligencia artificial con tecnología de monitoreo para proteger tu hogar en tiempo real.</p>
+</section>
+
+<section id="features" class="section">
+  <h2>¿Por qué elegir SecureIA?</h2>
+  <div class="grid">
+    <div class="card">🔒 Seguridad en tiempo real</div>
+    <div class="card">🤖 IA personalizada para tu hogar</div>
+    <div class="card">📱 Control desde tu móvil</div>
+    <div class="card">👨‍👩‍👧 Tranquilidad para tu familia</div>
+    <div class="card">🧠 Análisis inteligente de eventos</div>
+    <div class="card">🚨 Notificaciones instantáneas</div>
+  </div>
+</section>
+
+<section id="team" class="section">
+  <h2>¿Quiénes somos?</h2>
+  <p>Somos un equipo multidisciplinario comprometido con ofrecer seguridad inteligente para todos. Combinamos tecnología, experiencia y empatía para proteger lo que más importa.</p>
+  <img src="https://www.grupocibernos.com/hubfs/ciberseguridad%20(2).jpg" alt="Equipo SecureIA" class="team-image" />
+</section>
+
+<section class="mvv-section">
+  <div class="mvv-box">
+    <h2>Misión</h2>
+    <p>Brindar soluciones innovadoras de seguridad integral que protejan a las familias mediante tecnología de punta, adaptándonos a cada necesidad.</p>
+  </div>
+  <div class="mvv-box">
+    <h2>Visión</h2>
+    <p>Ser reconocidos como la plataforma de seguridad inteligente más confiable de Latinoamérica, marcando tendencia con innovación y compromiso social.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Valores</h2>
+  <ul class="mvv-values">
+    <li>🔍 Transparencia</li>
+    <li>🤝 Compromiso</li>
+    <li>💡 Innovación</li>
+    <li>👥 Empatía</li>
+    <li>🔐 Seguridad</li>
+  </ul>
+</section>
+
+<section id="contact" class="section">
+  <h2>Contáctanos</h2>
+  <p>¿Tienes dudas o deseas asesoría personalizada?</p>
+  <a href="mailto:info@secureia.com" class="cta-button">Escríbenos ahora</a>
+  <br>
+  <h2>Ver Planes</h2>
+  <a [routerLink]="'/planes'" class="cta-button">Ir ahora</a>
+</section>
+
+
+<footer class="footer">
+  <p>© 2025 SecureIA - Todos los derechos reservados</p>
+</footer>

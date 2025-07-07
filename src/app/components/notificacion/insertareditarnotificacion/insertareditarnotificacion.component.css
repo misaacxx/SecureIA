@@ -1,0 +1,79 @@
+/* Contenedor principal */
+.container {
+  background:  #2d4cbd; /* blanco a azul claro */
+  padding: 10px 10px;
+  border-radius: 20px;
+  max-width:600px;
+  margin: 40px auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* Título */
+.container h1 {
+  color: #ffffff; 
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 65px;
+  margin-bottom: 0px;
+  text-shadow:
+    0px 0px 1px black,
+    0.5px 0.5px 1px black;
+}
+
+/* Caja que encapsula el formulario */
+.form-box {
+  background-color: #ffffff;
+  padding: 10px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* mat-form-field ocupa todo el ancho */
+mat-form-field {
+  width: 100%;
+}
+
+/* Input personalizado */
+input[matInput] {
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Botón */
+button[matButton] {
+  background-color: rgb(231, 40, 40); /* Rojo */
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 12px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover del botón */
+button[matButton]:hover {
+  background-color: #2d4cbd;
+}
+
+/* Estilo para el botón deshabilitado */
+button[matButton][disabled] {
+  background-color: #cccccc !important; /* Gris claro */
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

@@ -1,0 +1,218 @@
+
+<mat-toolbar class="custom-toolbar" *ngIf="verificar()"> 
+  <!--logo de secureIA, redirige-->
+  <a class="logo-link" [routerLink]="'/inicio'" style="display: flex; align-items: center;">
+    <img src="https://i.pinimg.com/736x/22/c9/64/22c964ee71030c74b1a33ce2c156a35d.jpg" alt="Logo" style="height: 60px; margin-right: 10px;">
+     <mat-icon>home</mat-icon> <span class="logo-text">SecureIA</span>
+  </a>
+
+  
+  <!---div>
+    <button mat-button [routerLink]="['/inicio']" style="color: white">
+      <mat-icon>home</mat-icon>Home
+    </button>
+  </!---div--->
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menu_Roles" class="btn-rojo"  *ngIf="isAdmin()">
+   <mat-icon>stars</mat-icon>
+   Roles
+  </button>
+ </div>
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menu_Usuarios" class="btn-rojo"  *ngIf="isAdmin()">
+   <mat-icon>supervised_user_circle</mat-icon>
+   Usuarios
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Inmuebles" class="btn-rojo" *ngIf="isIndependiente() || isAdmin()">
+   <mat-icon>store</mat-icon>
+   Inmuebles
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Actividades" class="btn-rojo">
+   <mat-icon>settings</mat-icon>
+   Actividades
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_PerfilUsuario" class="btn-rojo">
+   <mat-icon>group</mat-icon>
+   Perfiles de Usuario
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Geolocalizacion" class="btn-rojo">
+   <mat-icon>explore</mat-icon>
+   Geolocalizaciones
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_ZonasDeteccion" class="btn-rojo" *ngIf="isAdmin()">
+   <mat-icon>sensors</mat-icon>
+   Zonas Detección
+  </button>
+ </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Dispositivo" class="btn-rojo">
+   <mat-icon>devices</mat-icon>
+   Dispositivos
+  </button>
+ </div>
+
+   <div>
+  <button mat-button [matMenuTriggerFor]="menu_Eventos" class="btn-rojo">
+   <mat-icon>event</mat-icon>
+   Eventos Dispositivos
+  </button>
+  </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Reconocimientos" class="btn-rojo">
+   <mat-icon>verified_user</mat-icon>
+  Reconocimientos
+  </button>
+  </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Grabaciones" class="btn-rojo">
+   <mat-icon>videocam</mat-icon>
+  Grabaciones
+  </button>
+  </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Notificaciones" class="btn-rojo">
+   <mat-icon>notifications</mat-icon>
+  Notificaciones
+  </button>
+  </div>
+
+  <div>
+  <button mat-button [matMenuTriggerFor]="menu_Reportes" class="btn-rojo">
+   <mat-icon>reports</mat-icon>
+  Reportes
+  </button>
+  </div>
+ 
+   <!---salir-->
+  <span class="toolbar-spacer"></span>
+  <div class="right-menu">
+  <button mat-button [matMenuTriggerFor]="menuSalir" >
+    <mat-icon>person</mat-icon>Mi Cuenta
+  </button>
+  </div>
+
+</mat-toolbar>
+
+<mat-menu #menu_Roles="matMenu">
+ <button mat-menu-item routerLink="/roles">Listar</button>
+ <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Usuarios="matMenu">
+ <button mat-menu-item routerLink="/usuarios">Listar</button> 
+ <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Inmuebles="matMenu">
+ <button mat-menu-item routerLink="/inmuebles">Listar</button> 
+ <button mat-menu-item routerLink="/inmuebles/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Actividades="matMenu">
+ <button mat-menu-item routerLink="/actividades" *ngIf="isIndependiente() || isAdmin()">Listar</button> 
+ <button mat-menu-item routerLink="/actividades/nuevo" *ngIf="isPadreFamilia() || isAdmin()">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_PerfilUsuario="matMenu">
+ <button mat-menu-item routerLink="/perfilusuario">Listar</button> 
+ <button mat-menu-item routerLink="/perfilusuario/nuevo" *ngIf="!isPadreFamilia()" >Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Geolocalizacion="matMenu">
+ <button mat-menu-item routerLink="/geolocalizaciones">Listar</button> 
+ <button mat-menu-item routerLink="/geolocalizaciones/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_ZonasDeteccion="matMenu">
+ <button mat-menu-item routerLink="/zonasdetec" >Listar</button> 
+ <button mat-menu-item routerLink="/zonasdetec/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Dispositivo="matMenu">
+ <button mat-menu-item routerLink="/dispositivos">Listar</button> 
+ <button mat-menu-item routerLink="/dispositivos/nuevo">Registrar</button>
+</mat-menu>
+
+
+<mat-menu #menu_Eventos="matMenu">
+ <button mat-menu-item routerLink="/eventos">Listar</button> 
+ <button mat-menu-item routerLink="/eventos/nuevo" *ngIf="!isIndependiente()">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Reconocimientos="matMenu">
+ <button mat-menu-item routerLink="/reconocimientos">Listar</button> 
+ <button mat-menu-item routerLink="/reconocimientos/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Grabaciones="matMenu">
+ <button mat-menu-item routerLink="/grabaciones">Listar</button> 
+ <button mat-menu-item routerLink="/grabaciones/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menu_Notificaciones="matMenu">
+ <button mat-menu-item routerLink="/notificaciones">Listar</button> 
+ <button mat-menu-item routerLink="/notificaciones/nuevo">Registrar</button>
+</mat-menu>
+
+
+
+<mat-menu #menu_Reportes="matMenu">
+ <button mat-menu-item routerLink="/reportes/CantEventosxAlertaAlta" *ngIf="!isIndependiente()">Cantidad Eventos con Alerta Alta por Tipo Dispositivo 
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button> 
+ <button mat-menu-item routerLink="/reportes/CantEventosxIdInmuble" *ngIf="!isPadreFamilia()">Cantidad Eventos por ID Inmueble 
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/ContarGrabacionesxFecha">Contar Grabaciones por Fecha 
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/PromedioGrabacionesxIdReco">Promedio de Grabaciones por ID Reconocimiento 
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/ListarMenor3dispositivosActivos" *ngIf="isIndependiente() || isAdmin()"> Listar Inmuebles con Menos de 3 dispositivos Activos   
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/CantidadNotiSegunsuCategoría">Cantidad de Notificaciones según su Categoría   
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/CantidadReconoxDíaSelecc"  *ngIf="!isPadreFamilia()">Cantidad de Reconocimientos por Día a Seleccionar   
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/CantRecoxIdInmueble" *ngIf="!isPadreFamilia()">Cantidad Reconocimientos por ID Inmueble   
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+ <button mat-menu-item routerLink="/reportes/CantUsersxTypeRol" *ngIf="isAdmin()" >Cantidad Usuarios por Tipo Rol  
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+  <button mat-menu-item routerLink="/reportes/CantUsersxMesYAnio" *ngIf="isAdmin()">Cantidad Usuarios por Mes y Año  
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+  <button mat-menu-item routerLink="/reportes/CantZonasMonitoActixInmueble" *ngIf="isAdmin()">Cantidad de Zonas Monitoreadas Activas por Inmueble
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+  <button mat-menu-item routerLink="/reportes/ZonasconMayorCantReco" *ngIf="isAdmin()">Cantidad de Zonas con Mayor Cantidad de Reconocimientos
+   <mat-icon class="arrow-icon">chevron_right</mat-icon></button>
+
+</mat-menu>
+
+<!---salir y tipo de rol-->
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/iniciarsesion" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+

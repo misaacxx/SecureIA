@@ -1,0 +1,108 @@
+.chat-container {
+  max-width: 800px;
+  margin: 80px auto;
+  border-radius: 12px;
+  padding: 20px;
+  background: rgb(244, 59, 59);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tit {
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column; /* Esto hace que todo sea vertical */
+  max-height: 500px;  min-height: 400px; /* altura mínima al cargar */
+  overflow-y: auto;
+  max-width: 900px;
+  padding: 10px;
+  margin: 30px auto;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.message.user {
+      
+  background-color: #cfe2ff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin: 20px 0 20px auto; /* ✅ Esto lo empuja a la derecha verticalmente */
+  max-width: 50%;
+  word-wrap: break-word;
+  align-self: flex-end; 
+  text-align: center;
+}
+
+.message.bot {
+        
+  background-color: #f1f1f1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin: 8px auto 12px 0; /* ✅ Esto lo mantiene a la izquierda verticalmente */
+  max-width: 80%;
+  word-wrap: break-word;
+  align-self: flex-start;  
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid white;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: blue;
+  border: none;
+  color: black;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sugerencias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.boton-sugerencia {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.boton-sugerencia:hover {
+  background-color: rgb(110, 110, 247);
+}
+
+/* Nuevo contenedor de cada línea de diálogo */
+.mensaje-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
